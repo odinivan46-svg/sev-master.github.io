@@ -1003,19 +1003,169 @@
 
             /* ---------- Анимированный фон "схема" ---------- */
             var canvas = document.getElementById('circuit-canvas');
-            if (!canvas) return;
+            if (!canvas || !canvas.getContext) return;
 
             var ctx = canvas.getContext('2d');
-            var dots = [];
+            if (!ctx) return;
+
             var width = 0;
             var height = 0;
             var dpr = 1;
+            var lines = [];
             var rafId = null;
-
             var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            var LINK_DIST = 140;
-            var SPEED = 0.32;
+            /* Точка на ломаной по параметру t (0..1) */
+            function getPointAlongPath(path, t) {
+                var totalLen = 0;
+                var lengths = [];
+                var i, dx, dy, len;
+
+                for (i = 0; i < path.length - 1; i++) {
+                    dx = path[i + 1].x - path[i].x;
+                    dy = path[i + 1].y - path[i].y;
+                    len = Math.sqrt(dx * dx + dy * dy);
+                    lengths.push(len);
+                    totalLen += len;
+                }
+
+                var targetLen = t * totalLen;
+                var accumulated = 0;
+
+                for (i = 0; i < lengths.length; i++) {
+                    if (accumulated + lengths[i] >= targetLen) {
+                        var segT = (targetLen - accumulated) / lengths[i];
+                        return {
+                            x: path[i].x + (path[i + 1].x - path[i].x) * segT,
+                            y: path[i].y + (path[i + 1].y - path[i].y) * segT
+                        };
+                    }
+                    accumulated += lengths[i];
+                }
+                return path[path.length - 1];
+            }
+
+            /* Одна дорожка микросхемы */
+            function CircuitLine() {
+                this.reset();
+            }
+
+            CircuitLine.prototype.reset = function () {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.length = Math.random() * 120 + 80;
+                this.speed = Math.random() * 1.5 + 0.5;
+                this.progress = 0;
+                this.dir = Math.floor(Math.random() * 4);
+                this.history = [{ x: this.x, y: this.y }];
+                this.pulses = [];
+
+                var turns = Math.floor(Math.random() * 2) + 1;
+                var curX = this.x;
+                var curY = this.y;
+                var curDir = this.dir;
+                var i, segLen;
+
+                for (i = 0; i < turns; i++) {
+                    segLen = Math.random() * 60 + 30;
+                    if (curDir === 0) curX += segLen;
+                    else if (curDir === 1) curY += segLen;
+                    else if (curDir === 2) curX -= segLen;
+                    else if (curDir === 3) curY -= segLen;
+
+                    this.history.push({ x: curX, y: curY });
+                    curDir = (curDir + (Math.random() > 0.5 ? 1 : 3)) % 4;
+                }
+
+                var lastSegLen = Math.random() * 60 + 30;
+                if (curDir === 0) curX += lastSegLen;
+                else if (curDir === 1) curY += lastSegLen;
+                else if (curDir === 2) curX -= lastSegLen;
+                else if (curDir === 3) curY -= lastSegLen;
+                this.history.push({ x: curX, y: curY });
+
+                if (Math.random() > 0.3) {
+                    this.pulses.push({ progress: 0, speed: Math.random() * 0.015 + 0.008 });
+                }
+            };
+
+            CircuitLine.prototype.draw = function () {
+                var i;
+
+                /* Проводник */
+                ctx.beginPath();
+                ctx.moveTo(this.history[0].x, this.history[0].y);
+                for (i = 1; i < this.history.length; i++) {
+                    ctx.lineTo(this.history[i].x, this.history[i].y);
+                }
+                ctx.strokeStyle = 'rgba(249, 115, 22, 0.12)';
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+
+                /* Контактные узлы */
+                ctx.fillStyle = 'rgba(249, 115, 22, 0.25)';
+                ctx.beginPath();
+                ctx.arc(this.history[0].x, this.history[0].y, 2.5, 0, Math.PI * 2);
+                ctx.fill();
+
+                var lastIdx = this.history.length - 1;
+                ctx.beginPath();
+                ctx.arc(this.history[lastIdx].x, this.history[lastIdx].y, 2.5, 0, Math.PI * 2);
+                ctx.fill();
+
+                /* Светящиеся импульсы энергии */
+                for (i = 0; i < this.pulses.length; i++) {
+                    var pulse = this.pulses[i];
+                    pulse.progress += pulse.speed;
+                    if (pulse.progress > 1) pulse.progress = 0;
+
+                    var pt = getPointAlongPath(this.history, pulse.progress);
+                    if (pt) {
+                        ctx.shadowBlur = 8;
+                        ctx.shadowColor = '#f97316';
+                        ctx.fillStyle = '#fdba74';
+                        ctx.beginPath();
+                        ctx.arc(pt.x, pt.y, 2, 0, Math.PI * 2);
+                        ctx.fill();
+                        ctx.shadowBlur = 0;
+                    }
+                }
+            };
+
+            function initCircuits() {
+                lines = [];
+                var count = Math.floor((width * height) / 25000);
+                for (var i = 0; i < count; i++) {
+                    lines.push(new CircuitLine());
+                }
+            }
+
+            function drawStatic() {
+                ctx.clearRect(0, 0, width, height);
+                for (var i = 0; i < lines.length; i++) {
+                    lines[i].draw();
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, width, height);
+                for (var i = 0; i < lines.length; i++) {
+                    lines[i].draw();
+                }
+                rafId = window.requestAnimationFrame(animate);
+            }
+
+            function start() {
+                if (rafId) {
+                    window.cancelAnimationFrame(rafId);
+                    rafId = null;
+                }
+                if (reduceMotion) {
+                    drawStatic();
+                    return;
+                }
+                rafId = window.requestAnimationFrame(animate);
+            }
 
             function resize() {
                 dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -1028,89 +1178,17 @@
                 canvas.style.height = height + 'px';
 
                 ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-                createDots();
+                initCircuits();
             }
 
-            function createDots() {
-                var count = Math.floor((width * height) / 17000);
-                count = Math.max(22, Math.min(count, 90));
-
-                dots = [];
-                for (var i = 0; i < count; i++) {
-                    dots.push({
-                        x: Math.random() * width,
-                        y: Math.random() * height,
-                        vx: (Math.random() - 0.5) * SPEED * 2,
-                        vy: (Math.random() - 0.5) * SPEED * 2,
-                        r: Math.random() * 1.5 + 0.8
-                    });
-                }
-            }
-
-            function draw() {
-                ctx.clearRect(0, 0, width, height);
-
-                var i, j, a, b, dx, dy, dist, alpha;
-
-                /* Линии между близкими точками */
-                for (i = 0; i < dots.length; i++) {
-                    a = dots[i];
-                    for (j = i + 1; j < dots.length; j++) {
-                        b = dots[j];
-                        dx = a.x - b.x;
-                        dy = a.y - b.y;
-                        dist = Math.sqrt(dx * dx + dy * dy);
-
-                        if (dist < LINK_DIST) {
-                            alpha = (1 - dist / LINK_DIST) * 0.34;
-                            ctx.strokeStyle = 'rgba(249, 115, 22, ' + alpha.toFixed(3) + ')';
-                            ctx.lineWidth = 0.9;
-                            ctx.beginPath();
-                            ctx.moveTo(a.x, a.y);
-                            ctx.lineTo(b.x, b.y);
-                            ctx.stroke();
-                        }
-                    }
-                }
-
-                /* Точки */
-                for (i = 0; i < dots.length; i++) {
-                    a = dots[i];
-                    ctx.beginPath();
-                    ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
-                    ctx.fillStyle = 'rgba(249, 115, 22, 0.75)';
-                    ctx.fill();
-                }
-            }
-
-            function step() {
-                var i, d;
-
-                for (i = 0; i < dots.length; i++) {
-                    d = dots[i];
-                    d.x += d.vx;
-                    d.y += d.vy;
-
-                    if (d.x < -20) d.x = width + 20;
-                    if (d.x > width + 20) d.x = -20;
-                    if (d.y < -20) d.y = height + 20;
-                    if (d.y > height + 20) d.y = -20;
-                }
-
-                draw();
-                rafId = window.requestAnimationFrame(step);
-            }
-
-            function start() {
-                if (rafId) window.cancelAnimationFrame(rafId);
-
-                if (reduceMotion) {
-                    draw();
-                    return;
-                }
-                rafId = window.requestAnimationFrame(step);
-            }
+            var resizeTimer = null;
+            window.addEventListener('resize', function () {
+                window.clearTimeout(resizeTimer);
+                resizeTimer = window.setTimeout(function () {
+                    resize();
+                    if (reduceMotion) drawStatic();
+                }, 150);
+            });
 
             /* Пауза, когда вкладка неактивна — экономим ресурсы */
             document.addEventListener('visibilitychange', function () {
@@ -1119,18 +1197,9 @@
                         window.cancelAnimationFrame(rafId);
                         rafId = null;
                     }
-                } else if (!reduceMotion) {
+                } else {
                     start();
                 }
-            });
-
-            var resizeTimer = null;
-            window.addEventListener('resize', function () {
-                window.clearTimeout(resizeTimer);
-                resizeTimer = window.setTimeout(function () {
-                    resize();
-                    if (reduceMotion) draw();
-                }, 150);
             });
 
             resize();
