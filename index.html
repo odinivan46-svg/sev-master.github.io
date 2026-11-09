@@ -35,7 +35,7 @@
 
   <style>
     :root {
-      --bg: #09090b;
+      --bg: #0a0a0f;
       --card-bg: rgba(24, 24, 27, 0.7);
       --border: rgba(255, 255, 255, 0.1);
       --accent: #f97316;
@@ -52,37 +52,18 @@
     }
 
     body {
-      background-color: var(--bg);
+      background: linear-gradient(-45deg, #0a0a0f, #1a1a2e, #16213e, #0f3460);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
       color: var(--text);
       line-height: 1.6;
       min-height: 100vh;
-      position: relative;
     }
 
-    /* Анимированный фон - ИСПРАВЛЕННЫЙ */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: 
-        radial-gradient(circle at 20% 30%, rgba(249, 115, 22, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.08) 0%, transparent 50%);
-      animation: bgMove 20s ease-in-out infinite;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    @keyframes bgMove {
-      0%, 100% { 
-        background-position: 0% 0%, 100% 100%, 50% 50%;
-      }
-      50% { 
-        background-position: 10% 10%, 90% 90%, 60% 40%;
-      }
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .container {
@@ -134,4 +115,325 @@
 
     .btn-primary {
       background: linear-gradient(135deg, #f97316, #ea580c);
-      color:
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
+      border: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 25px rgba(249, 115, 22, 0.4);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--border);
+      color: var(--text);
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .hero {
+      padding: 80px 0 60px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: var(--accent-glow);
+      border: 1px solid rgba(249, 115, 22, 0.3);
+      border-radius: 30px;
+      color: #fdba74;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto 35px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 40px;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 80px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 30px;
+      backdrop-filter: blur(10px);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent);
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .card ul {
+      list-style: none;
+    }
+
+    .card li {
+      font-size: 0.9rem;
+      color: var(--text);
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .card li span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .seo-text-block {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 35px;
+      margin-bottom: 80px;
+      backdrop-filter: blur(10px);
+    }
+
+    .seo-text-block h2 {
+      color: var(--text);
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    .seo-text-block p {
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .contact-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 50px 30px;
+      max-width: 600px;
+      margin: 0 auto 80px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .contact-section h2 {
+      margin-bottom: 10px;
+      font-size: 1.8rem;
+    }
+
+    .contact-section p {
+      color: var(--text-muted);
+      margin-bottom: 30px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--accent);
+    }
+
+    textarea {
+      resize: vertical;
+      height: 100px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+      .header-contacts {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+      }
+      .header-contacts .btn {
+        width: 100%;
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <div class="logo">
+        ️ Мастер<span>Про</span> Севастополь
+      </div>
+      <div class="header-contacts">
+        <a href="tel:+79505413385" class="btn btn-outline">📞 +7 (950) 541-33-85</a>
+        <a href="#contact" class="btn btn-primary">Вызвать мастера</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="badge">✨ Работаем без предоплаты • Выезд по всему Севастополю за 45 минут</div>
+      <h1>Частный мастер в Севастополе<br><span>Сантехника, электрика, ремонт ПК</span></h1>
+      <p>Профессиональный ремонт и монтаж у вас дома или в офисе. Оперативный выезд во все районы города с необходимым инструментом.</p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">Оставить заявку</a>
+        <a href="https://wa.me/79505413385" target="_blank" class="btn btn-outline">Написать в WhatsApp</a>
+      </div>
+    </section>
+
+    <h2 class="section-title">Услуги и цены</h2>
+    <div class="services-grid">
+      
+      <div class="card">
+        <h3>⚡ Услуги электрика</h3>
+        <p>Безопасный монтаж проводки и оперативный поиск неисправностей в сети.</p>
+        <ul>
+          <li>Замена розеток/выключателей <span>от 300 ₽</span></li>
+          <li>Сборка электрощитка <span>от 1500 ₽</span></li>
+          <li>Поиск и устранение обрыва <span>от 800 ₽</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>🔧 Услуги сантехника</h3>
+        <p>Устранение протечек, установка сантехники и подключение бытовой техники.</p>
+        <ul>
+          <li>Установка смесителя <span>от 600 ₽</span></li>
+          <li>Устранение засоров <span>от 700 ₽</span></li>
+          <li>Подключение стиральной маш. <span>от 900 ₽</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>💻 Ремонт ПК и ноутбуков</h3>
+        <p>Настройка ПО, глубокая чистка от пыли и замена комплектующих.</p>
+        <ul>
+          <li>Чистка + замена термопасты <span>от 1000 ₽</span></li>
+          <li>Установка Windows / ПО <span>от 800 ₽</span></li>
+          <li>Модернизация (апгрейд) <span>по договоренности</span></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <section class="seo-text-block">
+      <h2>Профессиональный ремонт с выездом на дом в Севастополе</h2>
+      <p>Ищете надежного мастера для решения бытовых проблем? Предоставляю широкий спектр услуг по ремонту и обслуживанию жилых и коммерческих помещений в Севастополе.</p>
+      <p><strong>Преимущества:</strong> фиксированная стоимость до начала работ, профессиональный инструмент, гарантия до 12 месяцев. Работаю без выходных во всех районах города.</p>
+    </section>
+
+    <section id="contact" class="contact-section">
+      <h2>Вызвать мастера</h2>
+      <p>Заполните форму, и я свяжусь с вами в течение 5 минут</p>
+      
+      <form action="https://formspree.io/f/xgaajogv" method="POST">
+        <div class="form-group">
+          <label>Ваше имя</label>
+          <input type="text" name="name" placeholder="Алексей" required>
+        </div>
+        <div class="form-group">
+          <label>Номер телефона</label>
+          <input type="tel" name="phone" placeholder="+7 (999) 000-00-00" required>
+        </div>
+        <div class="form-group">
+          <label>Что нужно сделать (необязательно)</label>
+          <textarea name="message" placeholder="Опишите кратко проблему..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">Отправить заявку</button>
+      </form>
+    </section>
+
+    <footer>
+      <p>© 2026 Частный мастер в Севастополе. Все права защищены.</p>
+    </footer>
+  </div>
+
+</body>
+</html>
