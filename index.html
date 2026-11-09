@@ -2,606 +2,115 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <!-- Эта строка критически важна для корректного отображения на телефонах -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Verification Tag for Google Search Console -->
-    <meta name="google-site-verification" content="oqSVKvDkqfgml0w2q0xA7zNUi70UY0bwYlEyL8CSrgo" />
-    
-    <!-- SEO Meta Tags -->
     <title>Частный мастер в Севастополе | Услуги электрика и ремонт ПК</title>
-    <meta name="description" content="Профессиональный частный мастер в Севастополе. Срочный выезд на дом: услуги электрика, ремонт и настройка ПК, ноутбуков. Без предоплаты, гарантия.">
-    <meta name="keywords" content="мастер на час Севастополь, электрик Севастополь, ремонт ПК Севастополь, ремонт ноутбуков Севастополь, вызов электрика">
-    <meta name="author" content="Частный мастер Севастополь">
-    
-    <!-- Open Graph / Social Media -->
-    <meta property="og:title" content="Частный мастер в Севастополе | Электрика и Ремонт ПК">
-    <meta property="og:description" content="Срочный выезд мастера на дом по всему Севастополю. Качественный ремонт электрики и компьютерной техники.">
-    <meta property="og:type" content="website">
-    
-    <!-- Schema.org Microdata for Local Business -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      "name": "Частный мастер в Севастополе (Электрика и ПК)",
-      "telephone": "+79505413385",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Севастополь",
-        "addressCountry": "RU"
-      },
-      "priceRange": "от 300 руб",
-      "openingHours": "Mo-Su 08:00-21:00",
-      "areaServed": "Севастополь"
-    }
-    </script>
-
     <style>
-        :root {
-            --bg: #09090b;
-            --card-bg: rgba(24, 24, 27, 0.65);
-            --border: rgba(255, 255, 255, 0.08);
-            --accent: #f97316;
-            --accent-glow: rgba(249, 115, 22, 0.15);
-            --text: #f4f4f5;
-            --text-muted: #a1a1aa;
-        }
+        /* Базовые стили */
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; color: #333; background-color: #fff; }
+        header { background: #2c3e50; color: white; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        .logo { font-size: 1.2em; font-weight: bold; }
+        .header-contacts { display: flex; gap: 15px; align-items: center; }
+        .phone-link { color: #f1c40f; text-decoration: none; font-weight: bold; font-size: 1.1em; white-space: nowrap; }
+        .btn { background: #e74c3c; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; border: none; cursor: pointer; text-align: center; transition: background 0.3s; }
+        .btn:hover { background: #c0392b; }
+        .hero { background: #ecf0f1; padding: 40px 20px; text-align: center; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .services { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 20px; }
+        .service-card { background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid #3498db; }
+        .service-card ul { padding-left: 20px; margin-top: 10px; }
+        .service-card li { margin-bottom: 8px; }
+        
+        /* Стили формы */
+        form { background: #f4f4f4; padding: 25px; border-radius: 8px; margin-top: 20px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, textarea { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 16px; }
+        
+        footer { background: #2c3e50; color: white; text-align: center; padding: 20px; margin-top: 40px; font-size: 0.9em; }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            overflow-x: hidden;
-            line-height: 1.6;
-            position: relative;
-            min-height: 100vh;
-        }
-
-        /* Canvas фон в стиле Circuit */
-        #circuit-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.65;
-        }
-
-        /* Верхнее свечение */
-        .glow-bg {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 1200px;
-            height: 500px;
-            background: radial-gradient(circle at 50% 0%, rgba(249, 115, 22, 0.18) 0%, rgba(217, 70, 239, 0.03) 70%, transparent 100%);
-            z-index: 1;
-            pointer-events: none;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* Шапка */
-        header {
-            padding: 30px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border);
-            backdrop-filter: blur(8px);
-        }
-
-        .logo {
-            font-weight: 700;
-            font-size: 1.25rem;
-            letter-spacing: -0.5px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .logo span {
-            color: var(--accent);
-        }
-
-        .header-contacts {
-            display: flex;
-            gap: 15px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, #f97316, #ea580c);
-            color: #fff;
-            box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
-            border: none;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 6px 25px rgba(249, 115, 22, 0.4);
-        }
-
-        .btn-outline {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            color: var(--text);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-outline:hover {
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        /* Hero */
-        .hero {
-            padding: 80px 0 60px;
-            text-align: center;
-        }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 6px 14px;
-            background: var(--accent-glow);
-            border: 1px solid rgba(249, 115, 22, 0.3);
-            border-radius: 30px;
-            color: #fdba74;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: 24px;
-            backdrop-filter: blur(5px);
-        }
-
-        .hero h1 {
-            font-size: clamp(2.3rem, 5vw, 3.8rem);
-            font-weight: 800;
-            letter-spacing: -1.5px;
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 span {
-            background: linear-gradient(135deg, #fff 30%, #fdba74 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            max-width: 650px;
-            margin: 0 auto 35px;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        /* Карточки услуг */
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 40px;
-            letter-spacing: -0.5px;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
-            margin-bottom: 80px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 32px;
-            backdrop-filter: blur(12px);
-            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-        }
-
-        .card:hover {
-            transform: translateY(-4px);
-            border-color: rgba(249, 115, 22, 0.4);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .card h3 {
-            font-size: 1.35rem;
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #fff;
-        }
-
-        .card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-        }
-
-        .card ul {
-            list-style: none;
-        }
-
-        .card li {
-            font-size: 0.92rem;
-            color: var(--text);
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .card li span {
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        /* SEO Блок */
-        .seo-text-block {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 35px;
-            margin-bottom: 80px;
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            backdrop-filter: blur(10px);
-        }
-
-        .seo-text-block h2 {
-            color: var(--text);
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .seo-text-block p {
-            margin-bottom: 12px;
-        }
-
-        /* Форма */
-        .contact-section {
-            background: linear-gradient(180deg, rgba(24, 24, 27, 0.5) 0%, rgba(24, 24, 27, 0.85) 100%);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 50px 30px;
-            max-width: 600px;
-            margin: 0 auto 80px;
-            text-align: center;
-            backdrop-filter: blur(12px);
-        }
-
-        .contact-section h2 {
-            margin-bottom: 10px;
-            font-size: 1.8rem;
-        }
-
-        .contact-section p {
-            color: var(--text-muted);
-            margin-bottom: 30px;
-        }
-
-        form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 6px;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 14px 16px;
-            background: rgba(9, 9, 11, 0.7);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            color: var(--text);
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        input:focus, textarea:focus {
-            border-color: var(--accent);
-        }
-
-        textarea {
-            resize: vertical;
-            height: 100px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px 0;
-            border-top: 1px solid var(--border);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        @media (max-width: 768px) {
-            .header-contacts .btn-outline { display: none; }
+        /* АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ */
+        @media (max-width: 600px) {
+            header { flex-direction: column; text-align: center; gap: 15px; padding: 15px; }
+            .header-contacts { flex-direction: column; width: 100%; gap: 10px; }
+            .phone-link { font-size: 1.3em; display: block; margin-bottom: 5px; }
+            .btn { width: 100%; box-sizing: border-box; }
+            h1 { font-size: 1.6em; line-height: 1.3; word-wrap: break-word; }
+            .container { padding: 15px; }
         }
     </style>
 </head>
 <body>
-    <!-- Canvas с анимацией микросхем -->
-    <canvas id="circuit-canvas"></canvas>
-    
-    <div class="glow-bg"></div>
-    
-    <div class="container">
-        <!-- Шапка -->
-        <header>
-            <div class="logo">
-                ⚡ Мастер<span>Про</span> Севастополь
-            </div>
-            <div class="header-contacts">
-                <a href="tel:+79505413385" class="btn btn-outline">📞 +7 (950) 541-33-85</a>
-                <a href="#contact" class="btn btn-primary">Вызвать мастера</a>
-            </div>
-        </header>
 
-        <!-- Главный блок -->
-        <section class="hero">
-            <div class="badge">⚡ Работаем без предоплаты | Выезд по Севастополю за 45 минут</div>
-            <h1>Частный мастер в Севастополе<br><span>Электрика и Ремонт ПК</span></h1>
-            <p>Профессиональный монтаж электросети, диагностика и оперативный ремонт компьютерной техники у вас дома или в офисе.</p>
-            <div class="hero-buttons">
-                <a href="#contact" class="btn btn-primary">Оставить заявку</a>
-                <a href="https://wa.me/79505413385" target="_blank" class="btn btn-outline">Написать в WhatsApp</a>
-            </div>
-        </section>
+<header>
+    <div class="logo">⚡ МастерПро Севастополь</div>
+    <div class="header-contacts">
+        <a href="tel:+79505413385" class="phone-link">📞 +7 (950) 541-33-85</a>
+        <a href="#contact" class="btn">Вызвать мастера</a>
+    </div>
+</header>
 
-        <!-- Услуги (Без сантехники) -->
-        <h2 class="section-title">Услуги и цены</h2>
-        <div class="services-grid">
-            <div class="card">
-                <h3>⚡ Услуги электрика</h3>
-                <p>Безопасный монтаж проводки, сборка щитов и оперативное устранение неисправностей.</p>
-                <ul>
-                    <li>Замена розеток / выключателей <span>от 300 ₽</span></li>
-                    <li>Сборка и монтаж электрощита <span>от 1500 ₽</span></li>
-                    <li>Поиск и устранение короткого замыкания <span>от 800 ₽</span></li>
-                    <li>Установка люстр и светильников <span>от 500 ₽</span></li>
-                    <li>Прокладка кабеля / штробление <span>от 150 ₽/м</span></li>
-                </ul>
-            </div>
+<section class="hero">
+    <h1>Частный мастер в Севастополе:<br>Электрика и Ремонт ПК</h1>
+    <p>⚡ Работаем без предоплаты | Выезд по Севастополю за 45 минут</p>
+    <p>Профессиональный монтаж электросети, диагностика и оперативный ремонт компьютерной техники у вас дома или в офисе.</p>
+    <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 10px; align-items: center;">
+        <a href="#contact" class="btn">Оставить заявку</a>
+        <a href="https://wa.me/79505413385?text=Здравствуйте!%20Нужен%20мастер" class="btn" style="background:#25D366;">Написать в WhatsApp</a>
+    </div>
+</section>
 
-            <div class="card">
-                <h3>💻 Ремонт ПК и ноутбуков</h3>
-                <p>Настройка ПО, аппаратно-технический ремонт, чистка и модернизация комплектующих.</p>
-                <ul>
-                    <li>Чистка от пыли + замена термопасты <span>от 1000 ₽</span></li>
-                    <li>Установка / переустановка Windows и ПО <span>от 800 ₽</span></li>
-                    <li>Удаление вирусов и ускорение работы <span>от 600 ₽</span></li>
-                    <li>Замена комплектующих / апгрейд ПК <span>по договоренности</span></li>
-                    <li>Сборка ПК под заказ <span>от 1500 ₽</span></li>
-                </ul>
-            </div>
+<div class="container">
+    <h2>Услуги и цены</h2>
+    <div class="services">
+        <div class="service-card">
+            <h3>⚡ Услуги электрика</h3>
+            <p>Безопасный монтаж проводки, сборка щитов и оперативное устранение неисправностей.</p>
+            <ul>
+                <li>Замена розеток / выключателей: от 300 ₽</li>
+                <li>Сборка и монтаж электрощита: от 1500 ₽</li>
+                <li>Поиск и устранение короткого замыкания: от 800 ₽</li>
+                <li>Установка люстр и светильников: от 500 ₽</li>
+                <li>Прокладка кабеля / штробление: от 150 ₽/м</li>
+            </ul>
         </div>
-
-        <!-- SEO Текст -->
-        <section class="seo-text-block">
-            <h2>Профессиональный ремонт электрики и ПК в Севастополе</h2>
-            <p>Нужна квалифицированная помощь по ремонту электрики или компьютерной техники? Предоставляю услуги частного мастера с выездом во все районы Севастополя (Гагаринский, Ленинский, Нахимовский, Центр, Корабельная сторона, Балаклава, Северная сторона).</p>
-            <p><strong>Преимущества:</strong> Фиксированная стоимость работ до начала ремонта, современный инструмент, гарантия на все выполненные работы.</p>
-        </section>
-
-        <!-- Форма обратной связи -->
-        <section id="contact" class="contact-section">
-            <h2>Вызвать мастера</h2>
-            <p>Заполните форму, и я свяжусь с вами в течение 5 минут</p>
-            <form name="service-request" method="POST" data-netlify="true">
-                <input type="hidden" name="form-name" value="service-request" />
-                <div class="form-group">
-                    <label>Ваше имя</label>
-                    <input type="text" name="name" placeholder="Алексей" required>
-                </div>
-                <div class="form-group">
-                    <label>Номер телефона</label>
-                    <input type="tel" name="phone" placeholder="+7 (999) 000-00-00" required>
-                </div>
-                <div class="form-group">
-                    <label>Что нужно сделать (необязательно)</label>
-                    <textarea name="message" placeholder="Опишите кратко проблему..."></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Отправить заявку</button>
-            </form>
-        </section>
-
-        <!-- Подвал -->
-        <footer>
-            <p>© 2026 Частный мастер в Севастополе. Все права защищены.</p>
-        </footer>
+        <div class="service-card">
+            <h3>💻 Ремонт ПК и ноутбуков</h3>
+            <p>Настройка ПО, аппаратно-технический ремонт, чистка и модернизация комплектующих.</p>
+            <ul>
+                <li>Чистка от пыли + замена термопасты: от 1000 ₽</li>
+                <li>Установка / переустановка Windows и ПО: от 800 ₽</li>
+                <li>Удаление вирусов и ускорение работы: от 600 ₽</li>
+                <li>Замена комплектующих / апгрейд ПК: по договоренности</li>
+                <li>Сборка ПК под заказ: от 1500 ₽</li>
+            </ul>
+        </div>
     </div>
 
-    <!-- Скрипт фоновой интерактивной анимации "Circuit Background" -->
-    <script>
-        const canvas = document.getElementById('circuit-canvas');
-        const ctx = canvas.getContext('2d');
+    <h2>Профессиональный ремонт электрики и ПК в Севастополе</h2>
+    <p>Нужна квалифицированная помощь по ремонту электрики или компьютерной техники? Предоставляю услуги частного мастера с выездом во все районы Севастополя (Гагаринский, Ленинский, Нахимовский, Центр, Корабельная сторона, Балаклава, Северная сторона).</p>
+    <p><strong>Преимущества:</strong> Фиксированная стоимость работ до начала ремонта, современный инструмент, гарантия на все выполненные работы.</p>
 
-        let width, height;
-        let lines = [];
+    <h2 id="contact">Вызвать мастера</h2>
+    <p>Заполните форму, и я свяжусь с вами в течение 5 минут.</p>
+    
+    <!-- ФОРМА FORMSPREE (С вашей рабочей ссылкой) -->
+    <form action="https://formspree.io/f/xgaajogv" method="POST">
+        <label for="name">Ваше имя</label>
+        <input type="text" id="name" name="name" required placeholder="Иван">
+        
+        <label for="phone">Номер телефона</label>
+        <input type="tel" id="phone" name="phone" required placeholder="+7 (___) ___-__-__">
+        
+        <label for="message">Что нужно сделать (необязательно)</label>
+        <textarea id="message" name="message" rows="4" placeholder="Например: Не работает розетка на кухне"></textarea>
+        
+        <button type="submit" class="btn" style="width: 100%;">Отправить заявку</button>
+    </form>
+</div>
 
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-            initCircuits();
-        }
+<footer>
+    <p>© 2026 Частный мастер в Севастополь. Все права защищены.</p>
+</footer>
 
-        class CircuitLine {
-            constructor() {
-                this.reset();
-            }
-
-            reset() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.length = Math.random() * 120 + 80;
-                this.speed = Math.random() * 1.5 + 0.5;
-                this.progress = 0;
-                this.dir = Math.floor(Math.random() * 4); // 0: right, 1: down, 2: left, 3: up
-                this.history = [{x: this.x, y: this.y}];
-                this.pulses = [];
-                
-                // 1-2 изгиба дорожки
-                let turns = Math.floor(Math.random() * 2) + 1;
-                let curX = this.x;
-                let curY = this.y;
-                let curDir = this.dir;
-
-                for (let i = 0; i < turns; i++) {
-                    let segLen = Math.random() * 60 + 30;
-                    if (curDir === 0) curX += segLen;
-                    else if (curDir === 1) curY += segLen;
-                    else if (curDir === 2) curX -= segLen;
-                    else if (curDir === 3) curY -= segLen;
-
-                    this.history.push({x: curX, y: curY});
-                    curDir = (curDir + (Math.random() > 0.5 ? 1 : 3)) % 4; // поворот на 90 градусов
-                }
-                
-                let lastSegLen = Math.random() * 60 + 30;
-                if (curDir === 0) curX += lastSegLen;
-                else if (curDir === 1) curY += lastSegLen;
-                else if (curDir === 2) curX -= lastSegLen;
-                else if (curDir === 3) curY -= lastSegLen;
-                this.history.push({x: curX, y: curY});
-
-                if (Math.random() > 0.3) {
-                    this.pulses.push({ progress: 0, speed: Math.random() * 0.015 + 0.008 });
-                }
-            }
-
-            draw() {
-                // Отрисовка проводника
-                ctx.beginPath();
-                ctx.moveTo(this.history[0].x, this.history[0].y);
-                for (let i = 1; i < this.history.length; i++) {
-                    ctx.lineTo(this.history[i].x, this.history[i].y);
-                }
-                ctx.strokeStyle = 'rgba(249, 115, 22, 0.12)';
-                ctx.lineWidth = 1.5;
-                ctx.stroke();
-
-                // Узлы (контактные точки)
-                ctx.fillStyle = 'rgba(249, 115, 22, 0.25)';
-                ctx.beginPath();
-                ctx.arc(this.history[0].x, this.history[0].y, 2.5, 0, Math.PI * 2);
-                ctx.fill();
-
-                let lastIdx = this.history.length - 1;
-                ctx.beginPath();
-                ctx.arc(this.history[lastIdx].x, this.history[lastIdx].y, 2.5, 0, Math.PI * 2);
-                ctx.fill();
-
-                // Светящиеся импульсы энергии
-                this.pulses.forEach((pulse, idx) => {
-                    pulse.progress += pulse.speed;
-                    if (pulse.progress > 1) {
-                        pulse.progress = 0;
-                    }
-
-                    let pt = getPointAlongPath(this.history, pulse.progress);
-                    if (pt) {
-                        ctx.shadowBlur = 8;
-                        ctx.shadowColor = '#f97316';
-                        ctx.fillStyle = '#fdba74';
-                        ctx.beginPath();
-                        ctx.arc(pt.x, pt.y, 2, 0, Math.PI * 2);
-                        ctx.fill();
-                        ctx.shadowBlur = 0;
-                    }
-                });
-            }
-        }
-
-        function getPointAlongPath(path, t) {
-            let totalLen = 0;
-            let lengths = [];
-            for (let i = 0; i < path.length - 1; i++) {
-                let dx = path[i+1].x - path[i].x;
-                let dy = path[i+1].y - path[i].y;
-                let len = Math.sqrt(dx*dx + dy*dy);
-                lengths.push(len);
-                totalLen += len;
-            }
-
-            let targetLen = t * totalLen;
-            let accumulated = 0;
-
-            for (let i = 0; i < lengths.length; i++) {
-                if (accumulated + lengths[i] >= targetLen) {
-                    let segT = (targetLen - accumulated) / lengths[i];
-                    return {
-                        x: path[i].x + (path[i+1].x - path[i].x) * segT,
-                        y: path[i].y + (path[i+1].y - path[i].y) * segT
-                    };
-                }
-                accumulated += lengths[i];
-            }
-            return path[path.length - 1];
-        }
-
-        function initCircuits() {
-            lines = [];
-            let count = Math.floor((width * height) / 25000); // динамическое количество
-            for (let i = 0; i < count; i++) {
-                lines.push(new CircuitLine());
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
-            lines.forEach(line => line.draw());
-            requestAnimationFrame(animate);
-        }
-
-        window.addEventListener('resize', resize);
-        resize();
-        animate();
-    </script>
 </body>
 </html>
