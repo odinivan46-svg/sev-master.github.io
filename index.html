@@ -63,23 +63,63 @@
       position: relative;
     }
 
-    .glow-bg {
-      position: absolute;
+    /* --- НОВАЯ АНИМАЦИЯ ФОНА --- */
+    .animated-bg {
+      position: fixed;
       top: 0;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 0;
       width: 100%;
-      max-width: 1200px;
-      height: 500px;
-      background: radial-gradient(circle at 50% 0%, rgba(249, 115, 22, 0.12) 0%, rgba(217, 70, 239, 0.04) 40%, transparent 70%);
-      z-index: -1;
-      pointer-events: none;
+      height: 100%;
+      z-index: -2;
+      background: #09090b;
+      overflow: hidden;
     }
+    .animated-bg .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.4;
+      will-change: transform;
+      animation: float 20s infinite ease-in-out;
+    }
+    .animated-bg .orb:nth-child(1) {
+      width: 500px;
+      height: 500px;
+      background: #f97316; /* Оранжевый акцент */
+      top: -150px;
+      left: -100px;
+      animation-delay: 0s;
+    }
+    .animated-bg .orb:nth-child(2) {
+      width: 400px;
+      height: 400px;
+      background: #8b5cf6; /* Фиолетовый оттенок */
+      bottom: -100px;
+      right: -100px;
+      animation-delay: -7s;
+    }
+    .animated-bg .orb:nth-child(3) {
+      width: 300px;
+      height: 300px;
+      background: #06b6d4; /* Голубой оттенок */
+      top: 40%;
+      left: 60%;
+      animation-delay: -14s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(40px, -60px) scale(1.1); }
+      66% { transform: translate(-30px, 30px) scale(0.9); }
+    }
+    /* --------------------------- */
 
     .container {
       max-width: 1100px;
       margin: 0 auto;
       padding: 0 20px;
+      position: relative;
+      z-index: 1;
     }
 
     header {
@@ -137,6 +177,7 @@
       background: var(--card-bg);
       border: 1px solid var(--border);
       color: var(--text);
+      backdrop-filter: blur(10px);
     }
 
     .btn-outline:hover {
@@ -222,237 +263,3 @@
     .card h3 {
       font-size: 1.3rem;
       margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .card p {
-      color: var(--text-muted);
-      font-size: 0.95rem;
-      margin-bottom: 20px;
-    }
-
-    .card ul {
-      list-style: none;
-    }
-
-    .card li {
-      font-size: 0.9rem;
-      color: var(--text);
-      padding: 6px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .card li span {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .seo-text-block {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 35px;
-      margin-bottom: 80px;
-      font-size: 0.95rem;
-      color: var(--text-muted);
-    }
-
-    .seo-text-block h2 {
-      color: var(--text);
-      font-size: 1.5rem;
-      margin-bottom: 15px;
-    }
-
-    .seo-text-block p {
-      margin-bottom: 12px;
-    }
-
-    .contact-section {
-      background: linear-gradient(180deg, rgba(24, 24, 27, 0.4) 0%, rgba(24, 24, 27, 0.8) 100%);
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 50px 30px;
-      max-width: 600px;
-      margin: 0 auto 80px;
-      text-align: center;
-    }
-
-    .contact-section h2 {
-      margin-bottom: 10px;
-      font-size: 1.8rem;
-    }
-
-    .contact-section p {
-      color: var(--text-muted);
-      margin-bottom: 30px;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      text-align: left;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 14px 16px;
-      background: rgba(9, 9, 11, 0.6);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      color: var(--text);
-      font-size: 1rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    input:focus, textarea:focus {
-      border-color: var(--accent);
-    }
-
-    textarea {
-      resize: vertical;
-      height: 100px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px 0;
-      border-top: 1px solid var(--border);
-      color: var(--text-muted);
-      font-size: 0.9rem;
-    }
-
-    /* ИСПРАВЛЕННАЯ АДАПТАЦИЯ ДЛЯ МОБИЛЬНЫХ ТЕЛЕФОНОВ */
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-      }
-      .header-contacts {
-        flex-direction: column;
-        width: 100%;
-        gap: 10px;
-      }
-      .header-contacts .btn {
-        width: 100%;
-        justify-content: center;
-      }
-      .hero h1 {
-        font-size: 2rem;
-      }
-    }
-  </style>
-</head>
-<body>
-
-  <div class="glow-bg"></div>
-
-  <div class="container">
-    <!-- Шапка -->
-    <header>
-      <div class="logo">
-        🛠️ Мастер<span>Про</span> Севастополь
-      </div>
-      <div class="header-contacts">
-        <a href="tel:+79505413385" class="btn btn-outline">📞 +7 (950) 541-33-85</a>
-        <a href="#contact" class="btn btn-primary">Вызвать мастера</a>
-      </div>
-    </header>
-
-    <!-- Главный блок (Hero) -->
-    <section class="hero">
-      <div class="badge">✨ Работаем без предоплаты • Выезд по всему Севастополю за 45 минут</div>
-      <h1>Частный мастер в Севастополе<br><span>Сантехника, электрика, ремонт ПК</span></h1>
-      <p>Профессиональный ремонт и монтаж у вас дома или в офисе. Оперативный выезд во все районы города с необходимым инструментом.</p>
-      <div class="hero-buttons">
-        <a href="#contact" class="btn btn-primary">Оставить заявку</a>
-        <a href="https://wa.me/79505413385" target="_blank" class="btn btn-outline">Написать в WhatsApp</a>
-      </div>
-    </section>
-
-    <!-- Услуги -->
-    <h2 class="section-title">Услуги и цены</h2>
-    <div class="services-grid">
-      
-      <div class="card">
-        <h3>⚡ Услуги электрика</h3>
-        <p>Безопасный монтаж проводки и оперативный поиск неисправностей в сети.</p>
-        <ul>
-          <li>Замена розеток/выключателей <span>от 300 ₽</span></li>
-          <li>Сборка электрощитка <span>от 1500 ₽</span></li>
-          <li>Поиск и устранение обрыва <span>от 800 ₽</span></li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>🔧 Услуги сантехника</h3>
-        <p>Устранение протечек, установка сантехники и подключение бытовой техники.</p>
-        <ul>
-          <li>Установка смесителя <span>от 600 ₽</span></li>
-          <li>Устранение засоров <span>от 700 ₽</span></li>
-          <li>Подключение стиральной маш. <span>от 900 ₽</span></li>
-        </ul>
-      </div>
-
-      <div class="card">
-        <h3>💻 Ремонт ПК и ноутбуков</h3>
-        <p>Настройка ПО, глубокая чистка от пыли и замена комплектующих.</p>
-        <ul>
-          <li>Чистка + замена термопасты <span>от 1000 ₽</span></li>
-          <li>Установка Windows / ПО <span>от 800 ₽</span></li>
-          <li>Модернизация (апгрейд) <span>по договоренности</span></li>
-        </ul>
-      </div>
-
-    </div>
-
-    <!-- SEO-текст -->
-    <section class="seo-text-block">
-      <h2>Профессиональный ремонт с выездом на дом в Севастополе</h2>
-      <p>Ищете надежного мастера для решения бытовых проблем? Предоставляю широкий спектр услуг по ремонту и обслуживанию жилых и коммерческих помещений в Севастополе. Больше не нужно искать трех разных специалистов — выполняю квалифицированные работы по электрике, сантехнике и обслуживанию компьютерной техники.</p>
-      <p><strong>Преимущества обращения:</strong> фиксированная стоимость до начала работ, использование профессионального инструмента, гарантия на все оказанные услуги до 12 месяцев. Работаю без выходных во всех районах города: Гагаринский, Ленинский, Нахимовский и Балаклавский.</p>
-    </section>
-
-    <!-- Форма заявки (ТЕПЕРЬ РАБОТАЕТ ЧЕРЕЗ FORMSPREE) -->
-    <section id="contact" class="contact-section">
-      <h2>Вызвать мастера</h2>
-      <p>Заполните форму, и я свяжусь с вами в течение 5 минут</p>
-      
-      <form action="https://formspree.io/f/xgaajogv" method="POST">
-        <div class="form-group">
-          <label>Ваше имя</label>
-          <input type="text" name="name" placeholder="Алексей" required>
-        </div>
-        <div class="form-group">
-          <label>Номер телефона</label>
-          <input type="tel" name="phone" placeholder="+7 (999) 000-00-00" required>
-        </div>
-        <div class="form-group">
-          <label>Что нужно сделать (необязательно)</label>
-          <textarea name="message" placeholder="Опишите кратко проблему..."></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">Отправить заявку</button>
-      </form>
-    </section>
-
-    <!-- Подвал -->
-    <footer>
-      <p>© 2026 Частный мастер в Севастополе. Все права защищены.</p>
-    </footer>
-  </div>
-
-</body>
-</html>
