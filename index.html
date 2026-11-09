@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Verification Tag for Google Search Console -->
     <meta name="google-site-verification" content="oqSVKvDkqfgml0w2q0xA7zNUi70UY0bwYlEyL8CSrgo" />
-    
+
     <!-- SEO Meta Tags -->
     <title>Частный мастер в Севастополе | Услуги электрика и ремонт ПК</title>
     <meta name="description" content="Профессиональный частный мастер в Севастополе. Срочный выезд на дом: услуги электрика, ремонт и настройка ПК, ноутбуков. Без предоплаты, гарантия.">
     <meta name="keywords" content="мастер на час Севастополь, электрик Севастополь, ремонт ПК Севастополь, ремонт ноутбуков Севастополь, вызов электрика">
     <meta name="author" content="Частный мастер Севастополь">
-    
+    <meta name="theme-color" content="#09090b">
+
     <!-- Open Graph / Social Media -->
     <meta property="og:title" content="Частный мастер в Севастополе | Электрика и Ремонт ПК">
     <meta property="og:description" content="Срочный выезд мастера на дом по всему Севастополю. Качественный ремонт электрики и компьютерной техники.">
     <meta property="og:type" content="website">
-    
+
     <!-- Schema.org Microdata for Local Business -->
     <script type="application/ld+json">
     {
@@ -44,6 +45,7 @@
             --accent-glow: rgba(249, 115, 22, 0.15);
             --text: #f4f4f5;
             --text-muted: #a1a1aa;
+            --radius: 18px;
         }
 
         * {
@@ -53,6 +55,10 @@
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: var(--bg);
             color: var(--text);
@@ -60,6 +66,7 @@
             line-height: 1.6;
             position: relative;
             min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
         }
 
         /* Canvas фон в стиле Circuit */
@@ -76,5 +83,1045 @@
 
         /* Верхнее свечение */
         .glow-bg {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(650px 420px at 50% -12%, rgba(249, 115, 22, 0.20), transparent 70%),
+                radial-gradient(700px 520px at 88% 18%, rgba(249, 115, 22, 0.07), transparent 72%),
+                radial-gradient(600px 500px at 5% 80%, rgba(249, 115, 22, 0.05), transparent 72%);
+        }
+
+        header, main, footer {
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ---------- HEADER ---------- */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            background: rgba(9, 9, 11, 0.72);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            min-height: 68px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 17px;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .logo-mark {
+            display: grid;
+            place-items: center;
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            background: linear-gradient(145deg, #fb923c, #ea580c);
+            box-shadow: 0 0 22px var(--accent-glow);
+            font-size: 17px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+        }
+
+        .nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color .2s ease;
+        }
+
+        .nav a:hover {
+            color: var(--text);
+        }
+
+        /* ---------- BUTTONS ---------- */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 14px 26px;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(145deg, #fb923c, #ea580c);
+            color: #1a0e04;
+            box-shadow: 0 10px 30px -10px rgba(249, 115, 22, 0.65);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 38px -12px rgba(249, 115, 22, 0.85);
+        }
+
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: var(--border);
+            color: var(--text);
+        }
+
+        .btn-outline:hover {
+            transform: translateY(-2px);
+            border-color: rgba(249, 115, 22, 0.55);
+            background: rgba(249, 115, 22, 0.08);
+        }
+
+        .btn-sm {
+            padding: 10px 18px;
+            font-size: 14px;
+            border-radius: 11px;
+        }
+
+        /* ---------- HERO ---------- */
+        .hero {
+            padding: 90px 0 76px;
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 7px 15px;
+            border-radius: 100px;
+            border: 1px solid rgba(249, 115, 22, 0.35);
+            background: rgba(249, 115, 22, 0.09);
+            color: #fdba74;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 26px;
+        }
+
+        .pulse {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #22c55e;
+            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%   { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.6); }
+            70%  { box-shadow: 0 0 0 9px rgba(34, 197, 94, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5.4vw, 3.55rem);
+            line-height: 1.12;
+            letter-spacing: -0.03em;
+            font-weight: 800;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 .accent {
+            background: linear-gradient(120deg, #fb923c, #f97316 55%, #fdba74);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            max-width: 660px;
+            margin: 0 auto 34px;
+            color: var(--text-muted);
+            font-size: clamp(1rem, 2.2vw, 1.15rem);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+            margin-bottom: 46px;
+        }
+
+        .hero-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 14px;
+            max-width: 820px;
+            margin: 0 auto;
+        }
+
+        .fact {
+            padding: 18px 14px;
+            border-radius: var(--radius);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+        }
+
+        .fact b {
+            display: block;
+            font-size: 22px;
+            color: var(--accent);
+            letter-spacing: -0.02em;
+        }
+
+        .fact small {
+            color: var(--text-muted);
+            font-size: 13px;
+        }
+
+        /* ---------- SECTIONS ---------- */
+        section {
+            padding: 66px 0;
+        }
+
+        .section-head {
+            text-align: center;
+            max-width: 640px;
+            margin: 0 auto 44px;
+        }
+
+        .section-head .kicker {
+            display: inline-block;
+            color: var(--accent);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .section-head h2 {
+            font-size: clamp(1.6rem, 4vw, 2.3rem);
+            letter-spacing: -0.025em;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .section-head p {
+            color: var(--text-muted);
+        }
+
+        /* ---------- CARDS ---------- */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(268px, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            position: relative;
+            padding: 26px 24px;
+            border-radius: var(--radius);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: "";
             position: absolute;
-            top: 0
+            inset: 0 0 auto 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.6), transparent);
+            opacity: 0;
+            transition: opacity .22s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(249, 115, 22, 0.4);
+            box-shadow: 0 20px 42px -24px rgba(0, 0, 0, 0.9);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            display: grid;
+            place-items: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 13px;
+            background: rgba(249, 115, 22, 0.12);
+            border: 1px solid rgba(249, 115, 22, 0.25);
+            font-size: 22px;
+            margin-bottom: 17px;
+        }
+
+        .card h3 {
+            font-size: 17px;
+            letter-spacing: -0.01em;
+            margin-bottom: 9px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 14.5px;
+        }
+
+        .card .price {
+            display: inline-block;
+            margin-top: 16px;
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #fdba74;
+            background: rgba(249, 115, 22, 0.1);
+            border: 1px solid rgba(249, 115, 22, 0.22);
+            padding: 5px 12px;
+            border-radius: 100px;
+        }
+
+        /* ---------- PRICE LIST ---------- */
+        .price-list {
+            max-width: 820px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 10px 24px;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .price-row {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            padding: 15px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.07);
+            font-size: 15px;
+        }
+
+        .price-row:last-child {
+            border-bottom: none;
+        }
+
+        .price-row .name {
+            color: var(--text);
+        }
+
+        .price-row .dots {
+            flex: 1;
+            border-bottom: 1px dotted rgba(255, 255, 255, 0.16);
+            transform: translateY(-4px);
+            min-width: 20px;
+        }
+
+        .price-row .value {
+            color: var(--accent);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .price-note {
+            max-width: 820px;
+            margin: 16px auto 0;
+            text-align: center;
+            font-size: 13.5px;
+            color: var(--text-muted);
+        }
+
+        /* ---------- ADVANTAGES ---------- */
+        .adv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 18px;
+        }
+
+        .adv {
+            display: flex;
+            gap: 14px;
+            padding: 22px;
+            border-radius: var(--radius);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+        }
+
+        .adv-icon {
+            flex: 0 0 auto;
+            display: grid;
+            place-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 11px;
+            background: rgba(249, 115, 22, 0.12);
+            border: 1px solid rgba(249, 115, 22, 0.24);
+            font-size: 18px;
+        }
+
+        .adv h3 {
+            font-size: 15.5px;
+            margin-bottom: 5px;
+        }
+
+        .adv p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ---------- CONTACT ---------- */
+        .contact-box {
+            position: relative;
+            overflow: hidden;
+            border-radius: 26px;
+            padding: 52px 28px;
+            text-align: center;
+            background:
+                radial-gradient(500px 300px at 50% 0%, rgba(249, 115, 22, 0.18), transparent 70%),
+                rgba(24, 24, 27, 0.7);
+            border: 1px solid rgba(249, 115, 22, 0.22);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .contact-box h2 {
+            font-size: clamp(1.55rem, 4vw, 2.2rem);
+            letter-spacing: -0.025em;
+            margin-bottom: 12px;
+        }
+
+        .contact-box > p {
+            color: var(--text-muted);
+            max-width: 520px;
+            margin: 0 auto 30px;
+        }
+
+        .phone-big {
+            display: inline-block;
+            font-size: clamp(1.5rem, 5vw, 2.3rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            text-decoration: none;
+            margin-bottom: 26px;
+            transition: color .2s ease;
+        }
+
+        .phone-big:hover {
+            color: var(--accent);
+        }
+
+        .contact-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+
+        .contact-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px 28px;
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .contact-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ---------- FOOTER ---------- */
+        .site-footer {
+            border-top: 1px solid var(--border);
+            padding: 30px 0;
+            margin-top: 40px;
+        }
+
+        .footer-inner {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            font-size: 13.5px;
+            color: var(--text-muted);
+        }
+
+        .footer-inner a {
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .footer-inner a:hover {
+            color: var(--accent);
+        }
+
+        /* ---------- FLOATING CALL (mobile) ---------- */
+        .floating-call {
+            display: none;
+            position: fixed;
+            right: 16px;
+            bottom: 16px;
+            z-index: 60;
+            align-items: center;
+            gap: 9px;
+            padding: 14px 20px;
+            border-radius: 100px;
+            background: linear-gradient(145deg, #fb923c, #ea580c);
+            color: #1a0e04;
+            font-weight: 800;
+            font-size: 15px;
+            text-decoration: none;
+            box-shadow: 0 12px 30px -8px rgba(249, 115, 22, 0.8);
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 860px) {
+            .nav {
+                display: none;
+            }
+
+            .hero {
+                padding: 62px 0 56px;
+            }
+
+            section {
+                padding: 50px 0;
+            }
+
+            .price-list {
+                padding: 6px 16px;
+            }
+
+            .price-row {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .header-inner {
+                min-height: 62px;
+            }
+
+            .header-call-desktop {
+                display: none;
+            }
+
+            .floating-call {
+                display: inline-flex;
+            }
+
+            .contact-box {
+                padding: 40px 20px;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+            }
+
+            .price-row {
+                flex-wrap: wrap;
+                gap: 4px 10px;
+            }
+
+            .price-row .dots {
+                display: none;
+            }
+
+            .price-row .value {
+                margin-left: auto;
+            }
+
+            body {
+                padding-bottom: 74px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Фон: анимированная схема -->
+    <canvas id="circuit-canvas" aria-hidden="true"></canvas>
+    <div class="glow-bg" aria-hidden="true"></div>
+
+    <!-- ================= HEADER ================= -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="logo" href="#top">
+                <span class="logo-mark">⚡</span>
+                Мастер<span>Севастополь</span>
+            </a>
+
+            <nav class="nav" aria-label="Основная навигация">
+                <a href="#services">Услуги</a>
+                <a href="#prices">Цены</a>
+                <a href="#why">Почему я</a>
+                <a href="#contacts">Контакты</a>
+            </nav>
+
+            <a class="btn btn-primary btn-sm header-call-desktop" href="tel:+79505413385">
+                📞 +7 950 541-33-85
+            </a>
+        </div>
+    </header>
+
+    <main id="top">
+
+        <!-- ================= HERO ================= -->
+        <section class="hero">
+            <div class="container">
+                <div class="badge">
+                    <span class="pulse"></span>
+                    Свободен для вызова — сегодня
+                </div>
+
+                <h1>
+                    Частный мастер в Севастополе:<br>
+                    <span class="accent">электрика и ремонт ПК</span>
+                </h1>
+
+                <p>
+                    Приеду на дом в течение часа. Розетки, автоматы, проводка, люстры —
+                    а также чистка, настройка и ремонт компьютеров и ноутбуков.
+                    Без предоплаты, с гарантией на работу.
+                </p>
+
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="tel:+79505413385">📞 Позвонить мастеру</a>
+                    <a class="btn btn-outline" href="https://wa.me/79505413385" target="_blank" rel="noopener">💬 Написать в WhatsApp</a>
+                </div>
+
+                <div class="hero-facts">
+                    <div class="fact">
+                        <b>от 300 ₽</b>
+                        <small>стоимость работ</small>
+                    </div>
+                    <div class="fact">
+                        <b>~1 час</b>
+                        <small>срок выезда</small>
+                    </div>
+                    <div class="fact">
+                        <b>12 мес.</b>
+                        <small>гарантия</small>
+                    </div>
+                    <div class="fact">
+                        <b>08–21</b>
+                        <small>без выходных</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SERVICES ================= -->
+        <section id="services">
+            <div class="container">
+                <div class="section-head">
+                    <span class="kicker">Услуги</span>
+                    <h2>Что я делаю</h2>
+                    <p>Работаю сам, без посредников и диспетчеров — вы платите только за работу.</p>
+                </div>
+
+                <div class="grid">
+                    <article class="card">
+                        <div class="card-icon">🔌</div>
+                        <h3>Услуги электрика</h3>
+                        <p>Замена розеток и выключателей, монтаж люстр и светильников, замена автоматов, поиск и устранение неисправностей проводки.</p>
+                        <span class="price">от 300 ₽</span>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">🖥️</div>
+                        <h3>Ремонт и настройка ПК</h3>
+                        <p>Чистка от пыли, замена термопасты, установка Windows и драйверов, удаление вирусов, апгрейд комплектующих.</p>
+                        <span class="price">от 500 ₽</span>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">💻</div>
+                        <h3>Ремонт ноутбуков</h3>
+                        <p>Профилактика перегрева, замена клавиатуры и экрана, установка SSD, восстановление после залития, диагностика.</p>
+                        <span class="price">от 700 ₽</span>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">📶</div>
+                        <h3>Wi-Fi и интернет</h3>
+                        <p>Настройка роутера, усиление сигнала, создание домашней сети, подключение ТВ-приставок и умных устройств.</p>
+                        <span class="price">от 500 ₽</span>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">🧰</div>
+                        <h3>Мастер на час</h3>
+                        <p>Мелкий ремонт по дому: повесить полку или телевизор, собрать мебель, заменить смеситель, подтянуть фурнитуру.</p>
+                        <span class="price">от 400 ₽</span>
+                    </article>
+
+                    <article class="card">
+                        <div class="card-icon">🚨</div>
+                        <h3>Срочный вызов</h3>
+                        <p>Пропал свет, выбивает автомат, не включается компьютер — приеду в день обращения и решу проблему на месте.</p>
+                        <span class="price">выезд сегодня</span>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PRICES ================= -->
+        <section id="prices">
+            <div class="container">
+                <div class="section-head">
+                    <span class="kicker">Прайс</span>
+                    <h2>Прозрачные цены</h2>
+                    <p>Точную стоимость назову по телефону до выезда. Оплата — только после выполненной работы.</p>
+                </div>
+
+                <div class="price-list">
+                    <div class="price-row">
+                        <span class="name">Выезд и диагностика</span>
+                        <span class="dots"></span>
+                        <span class="value">бесплатно при заказе</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="name">Установка розетки / выключателя</span>
+                        <span class="dots"></span>
+                        <span class="value">от 300 ₽</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="name">Замена автомата в щитке</span>
+                        <span class="dots"></span>
+                        <span class="value">от 400 ₽</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="name">Монтаж люстры или светильника</span>
+                        <span class="dots"></span>
+                        <span class="value">от 500 ₽</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="name">Поиск и устранение неисправности проводки</span>
+                        <span class="dots"></span>
+                        <span class="value">от 700 ₽</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="name">Чистка ПК / ноутбука + термопаста</span>
+                        <span class="dots"></span>
+                        <span class="value">от 700 ₽</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="name">Установка Windows и программ</span>
+                        <span class="dots"></span>
+                        <span class="value">от 500 ₽</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="name">Удаление вирусов и настройка системы</span>
+                        <span class="dots"></span>
+                        <span class="value">от 500 ₽</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="name">Настройка Wi-Fi роутера</span>
+                        <span class="dots"></span>
+                        <span class="value">от 500 ₽</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="name">Мастер на час (мелкий ремонт)</span>
+                        <span class="dots"></span>
+                        <span class="value">от 400 ₽</span>
+                    </div>
+                </div>
+
+                <p class="price-note">
+                    Цены указаны как ориентир и не являются публичной офертой. Стоимость зависит от сложности работ и материалов.
+                </p>
+            </div>
+        </section>
+
+        <!-- ================= WHY ME ================= -->
+        <section id="why">
+            <div class="container">
+                <div class="section-head">
+                    <span class="kicker">Почему я</span>
+                    <h2>Работаю честно и на совесть</h2>
+                    <p>Частный мастер, а не фирма с накруткой. Отвечаю за результат лично.</p>
+                </div>
+
+                <div class="adv-grid">
+                    <div class="adv">
+                        <div class="adv-icon">⏱️</div>
+                        <div>
+                            <h3>Быстрый выезд</h3>
+                            <p>Приезжаю в течение часа по всему Севастополю, включая пригороды.</p>
+                        </div>
+                    </div>
+
+                    <div class="adv">
+                        <div class="adv-icon">💳</div>
+                        <div>
+                            <h3>Без предоплаты</h3>
+                            <p>Сначала делаю работу — вы оплачиваете только готовый результат.</p>
+                        </div>
+                    </div>
+
+                    <div class="adv">
+                        <div class="adv-icon">🛡️</div>
+                        <div>
+                            <h3>Гарантия до 12 месяцев</h3>
+                            <p>Если что-то пойдёт не так — приеду и исправлю бесплатно.</p>
+                        </div>
+                    </div>
+
+                    <div class="adv">
+                        <div class="adv-icon">🧑‍🔧</div>
+                        <div>
+                            <h3>Опыт более 10 лет</h3>
+                            <p>Электрика и компьютерная техника — профильные направления.</p>
+                        </div>
+                    </div>
+
+                    <div class="adv">
+                        <div class="adv-icon">💬</div>
+                        <div>
+                            <h3>Честные цены</h3>
+                            <p>Называю стоимость по телефону до выезда — без сюрпризов на месте.</p>
+                        </div>
+                    </div>
+
+                    <div class="adv">
+                        <div class="adv-icon">🕗</div>
+                        <div>
+                            <h3>Ежедневно 08:00–21:00</h3>
+                            <p>Работаю без выходных, в том числе в праздничные дни.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= CONTACTS ================= -->
+        <section id="contacts">
+            <div class="container">
+                <div class="contact-box">
+                    <h2>Нужен мастер прямо сейчас?</h2>
+                    <p>Позвоните или напишите — уточню детали и назову стоимость. Выезд возможен в день обращения.</p>
+
+                    <a class="phone-big" href="tel:+79505413385">+7 950 541-33-85</a>
+
+                    <div class="contact-actions">
+                        <a class="btn btn-primary" href="tel:+79505413385">📞 Позвонить</a>
+                        <a class="btn btn-outline" href="https://wa.me/79505413385" target="_blank" rel="noopener">💬 WhatsApp</a>
+                        <a class="btn btn-outline" href="https://t.me/+79505413385" target="_blank" rel="noopener">✈️ Telegram</a>
+                    </div>
+
+                    <div class="contact-meta">
+                        <span>📍 Севастополь и пригород</span>
+                        <span>🕗 Ежедневно с 08:00 до 21:00</span>
+                        <span>💵 Наличные / перевод</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <span>© <span id="year">2025</span> Частный мастер в Севастополе. Электрика и ремонт ПК.</span>
+            <a href="tel:+79505413385">+7 950 541-33-85</a>
+        </div>
+    </footer>
+
+    <!-- Плавающая кнопка звонка (мобильные) -->
+    <a class="floating-call" href="tel:+79505413385">📞 Позвонить</a>
+
+    <!-- ================= SCRIPT ================= -->
+    <script>
+        (function () {
+            "use strict";
+
+            /* Текущий год в подвале */
+            var yearEl = document.getElementById('year');
+            if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+            /* ---------- Анимированный фон "схема" ---------- */
+            var canvas = document.getElementById('circuit-canvas');
+            if (!canvas) return;
+
+            var ctx = canvas.getContext('2d');
+            var dots = [];
+            var width = 0;
+            var height = 0;
+            var dpr = 1;
+            var rafId = null;
+
+            var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            var LINK_DIST = 140;
+            var SPEED = 0.32;
+
+            function resize() {
+                dpr = Math.min(window.devicePixelRatio || 1, 2);
+                width = window.innerWidth;
+                height = window.innerHeight;
+
+                canvas.width = Math.floor(width * dpr);
+                canvas.height = Math.floor(height * dpr);
+                canvas.style.width = width + 'px';
+                canvas.style.height = height + 'px';
+
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+                createDots();
+            }
+
+            function createDots() {
+                var count = Math.floor((width * height) / 17000);
+                count = Math.max(22, Math.min(count, 90));
+
+                dots = [];
+                for (var i = 0; i < count; i++) {
+                    dots.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        vx: (Math.random() - 0.5) * SPEED * 2,
+                        vy: (Math.random() - 0.5) * SPEED * 2,
+                        r: Math.random() * 1.5 + 0.8
+                    });
+                }
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, width, height);
+
+                var i, j, a, b, dx, dy, dist, alpha;
+
+                /* Линии между близкими точками */
+                for (i = 0; i < dots.length; i++) {
+                    a = dots[i];
+                    for (j = i + 1; j < dots.length; j++) {
+                        b = dots[j];
+                        dx = a.x - b.x;
+                        dy = a.y - b.y;
+                        dist = Math.sqrt(dx * dx + dy * dy);
+
+                        if (dist < LINK_DIST) {
+                            alpha = (1 - dist / LINK_DIST) * 0.34;
+                            ctx.strokeStyle = 'rgba(249, 115, 22, ' + alpha.toFixed(3) + ')';
+                            ctx.lineWidth = 0.9;
+                            ctx.beginPath();
+                            ctx.moveTo(a.x, a.y);
+                            ctx.lineTo(b.x, b.y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                /* Точки */
+                for (i = 0; i < dots.length; i++) {
+                    a = dots[i];
+                    ctx.beginPath();
+                    ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(249, 115, 22, 0.75)';
+                    ctx.fill();
+                }
+            }
+
+            function step() {
+                var i, d;
+
+                for (i = 0; i < dots.length; i++) {
+                    d = dots[i];
+                    d.x += d.vx;
+                    d.y += d.vy;
+
+                    if (d.x < -20) d.x = width + 20;
+                    if (d.x > width + 20) d.x = -20;
+                    if (d.y < -20) d.y = height + 20;
+                    if (d.y > height + 20) d.y = -20;
+                }
+
+                draw();
+                rafId = window.requestAnimationFrame(step);
+            }
+
+            function start() {
+                if (rafId) window.cancelAnimationFrame(rafId);
+
+                if (reduceMotion) {
+                    draw();
+                    return;
+                }
+                rafId = window.requestAnimationFrame(step);
+            }
+
+            /* Пауза, когда вкладка неактивна — экономим ресурсы */
+            document.addEventListener('visibilitychange', function () {
+                if (document.hidden) {
+                    if (rafId) {
+                        window.cancelAnimationFrame(rafId);
+                        rafId = null;
+                    }
+                } else if (!reduceMotion) {
+                    start();
+                }
+            });
+
+            var resizeTimer = null;
+            window.addEventListener('resize', function () {
+                window.clearTimeout(resizeTimer);
+                resizeTimer = window.setTimeout(function () {
+                    resize();
+                    if (reduceMotion) draw();
+                }, 150);
+            });
+
+            resize();
+            start();
+        })();
+    </script>
+
+</body>
+</html>
